@@ -26,25 +26,12 @@ public class OrderService {
 
     @Transactional
     public Order createOrder(Order order) {
-        // Лог перед вызовом UserClient
-        System.out.println("Calling URL: " + "/user/exists/" + order.getUserId());
-        System.out.println("check user with ID: " + order.getUserId());
+        checkUser(order.getUserId());
 
-
-        System.out.println("Проверка check user… с ID: " + order.getUserId());
-        System.out.println("existsById = " + userClient.existsById(order.getUserId()));
-
-        if (!userClient.existsById(order.getUserId())) {
-            throw new UserNotFoundException(String.format("Пользователь с id %d не найден",order.getUserId()));
-        }
-
-        List<Long> productIds = order.getOrderLines().stream()
+        checkProduct(order.getOrderLines().stream()
                 .map(OrderLine::getProductId) // Извлекаем productId из каждого OrderLine
-                .collect(Collectors.toList());
-
-        if (!productClient.checkProductsExist(productIds)) {
-            throw new ProductNotFoundException("Один или несколько товаров не найдены");
-        }
+                .collect(Collectors.toList())
+        );
 
         Order newOrder = orderRepository.create(order);
 
@@ -55,5 +42,17 @@ public class OrderService {
         }
 
         return newOrder;
+    }
+
+    private void checkUser(Long id) {
+        if (!userClient.existsById(id)) {
+            throw new UserNotFoundException(String.format("Пользователь с id %d не найден",id));
+        }
+    }
+
+    private void checkProduct(List<Long> productIds) {
+        if (!productClient.checkProductsExist(productIds)) {
+            throw new ProductNotFoundException("Один или несколько товаров не найдены");
+        }
     }
 }

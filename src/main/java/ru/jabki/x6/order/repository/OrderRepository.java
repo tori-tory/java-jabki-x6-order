@@ -19,13 +19,9 @@ public class OrderRepository {
     private final OrderRowMapper orderRowMapper;
 
     public Order create(final Order order) {
-        return jdbcTemplate.queryForObject(INSERT, orderToSql(order), orderRowMapper);
-    }
-
-    private MapSqlParameterSource orderToSql(final Order order) {
-        final MapSqlParameterSource params = new MapSqlParameterSource();
-
-        params.addValue("user_id", order.getUserId());
-        return params;
+        return jdbcTemplate.queryForObject(
+                INSERT,
+                new MapSqlParameterSource().addValue("user_id", order.getUserId()),
+                orderRowMapper);
     }
 }

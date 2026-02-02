@@ -1,4 +1,4 @@
-package ru.jabki.x6.order.dto;
+package ru.jabki.x6.order.model.dto;
 
 import org.springframework.stereotype.Component;
 import ru.jabki.x6.order.model.Order;

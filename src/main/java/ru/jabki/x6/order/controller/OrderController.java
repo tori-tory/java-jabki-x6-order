@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
-import ru.jabki.x6.order.dto.CreateOrderRequest;
-import ru.jabki.x6.order.dto.OrderApiMapper;
-import ru.jabki.x6.order.dto.OrderResponse;
+import ru.jabki.x6.order.model.dto.CreateOrderRequest;
+import ru.jabki.x6.order.model.dto.OrderApiMapper;
+import ru.jabki.x6.order.model.dto.OrderResponse;
 import ru.jabki.x6.order.service.OrderService;
 
 @RestController
