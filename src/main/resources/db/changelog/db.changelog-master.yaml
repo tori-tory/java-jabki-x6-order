@@ -1,3 +1,6 @@
 databaseChangeLog:
   - include:
       file: db/changelog/20260117_1200_init_schema.sql
+
+  - include:
+      file: db/changelog/20260205_1200_alter_table_orders.sql

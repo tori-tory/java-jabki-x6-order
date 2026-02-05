@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -15,6 +15,6 @@ import java.util.List;
 public class Order {
     private Long id;
     private Long userId;
-    private OffsetDateTime createdAt;
+    private LocalDateTime createdAt;
     private List<OrderLine> orderLines;
 }

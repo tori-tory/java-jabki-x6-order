@@ -26,7 +26,7 @@ public class OrderController {
                 .status(HttpStatus.CREATED)
                 .body(mapper.toResponse(
                                 orderService.createOrder(mapper.toModel(request))
-                     )
+                        )
                 );
     }
 }

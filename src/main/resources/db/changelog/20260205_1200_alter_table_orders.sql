@@ -1,0 +1,4 @@
+ALTER TABLE x6_order."orders"
+ALTER COLUMN created_at
+TYPE TIMESTAMP WITHOUT TIME ZONE
+USING created_at::TIMESTAMP;
