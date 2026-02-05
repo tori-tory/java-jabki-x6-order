@@ -6,7 +6,7 @@ import ru.jabki.x6.order.model.Order;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @Component
 public class OrderRowMapper implements RowMapper<Order> {
@@ -16,7 +16,7 @@ public class OrderRowMapper implements RowMapper<Order> {
         return Order.builder()
                 .id(rs.getLong("id"))
                 .userId(rs.getLong("user_id"))
-                .createdAt(rs.getObject("created_at", OffsetDateTime.class))
+                .createdAt(rs.getObject("created_at", LocalDateTime.class))
                 .build();
     }
 }

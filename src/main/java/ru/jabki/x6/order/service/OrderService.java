@@ -23,6 +23,7 @@ public class OrderService {
     private final OrderLineRepository orderLineRepository;
     private final UserClient userClient;
     private final ProductClient productClient;
+    private final X6Producer producer;
 
     @Transactional
     public Order createOrder(Order order) {
@@ -40,7 +41,10 @@ public class OrderService {
                 orderLineRepository.create(line, newOrder.getId());
             }
         }
+        order.setId(newOrder.getId());
+        order.setCreatedAt(newOrder.getCreatedAt());
 
+        producer.send(order);
         return newOrder;
     }
 
